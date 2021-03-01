@@ -19,23 +19,22 @@ const getDogs = () => {
 const updateDog = e => {
     e.preventDefault()
     if (editId) {
-
-    }
-    const tr = document.getElementById(editId)
-    axios.patch(`http://localhost:3000/dogs/${editId}`, {
-        name: e.target.name.value,
-        breed: e.target.breed.value,
-        sex: e.target.sex.value
-    })
-        .then(res => {
-            const name = tr.querySelector('td.name')
-            const breed = tr.querySelector('td.breed')
-            const sex = tr.querySelector('td.sex')
-            name.innerText = e.target.name.value
-            breed.innerText = e.target.breed.value
-            sex.innerText = e.target.sex.value
-            clearInput()
+        const tr = document.getElementById(editId)
+        axios.patch(`http://localhost:3000/dogs/${editId}`, {
+            name: e.target.name.value,
+            breed: e.target.breed.value,
+            sex: e.target.sex.value
         })
+            .then(res => {
+                const name = tr.querySelector('td.name')
+                const breed = tr.querySelector('td.breed')
+                const sex = tr.querySelector('td.sex')
+                name.innerText = e.target.name.value
+                breed.innerText = e.target.breed.value
+                sex.innerText = e.target.sex.value
+                clearInput()
+            })
+    }
 }
 
 const createDogRow = dog => {
